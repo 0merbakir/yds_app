@@ -30,12 +30,20 @@ const App = () => {
   const [activeAmbience, setActiveAmbience] = useState(() => {
     return localStorage.getItem('yds_active_ambience') || null;
   });
+  const [activeSessionIds, setActiveSessionIds] = useState(() => {
+    const saved = localStorage.getItem('yds_active_session');
+    return saved ? JSON.parse(saved) : [];
+  });
 
   const audioRefs = useRef({});
 
   useEffect(() => {
     localStorage.setItem('yds_words', JSON.stringify(words));
   }, [words]);
+
+  useEffect(() => {
+    localStorage.setItem('yds_active_session', JSON.stringify(activeSessionIds));
+  }, [activeSessionIds]);
 
   useEffect(() => {
     if (currentWord) {
@@ -69,30 +77,48 @@ const App = () => {
     setActiveAmbience(prev => prev === id ? null : id);
   };
 
+  const replenishSession = useCallback((allUnlearned) => {
+    const shuffled = [...allUnlearned].sort(() => 0.5 - Math.random());
+    const newSession = shuffled.slice(0, 20).map(w => w.word);
+    setActiveSessionIds(newSession);
+    return newSession;
+  }, []);
+
   const selectNewWord = useCallback(() => {
-    const available = words.filter(w => (w.streak || 0) < 3);
-    if (available.length === 0) {
+    const unlearned = words.filter(w => (w.streak || 0) < 3);
+    if (unlearned.length === 0) {
+      setCurrentWord(null);
+      setActiveSessionIds([]);
+      return;
+    }
+
+    let currentSession = activeSessionIds.filter(id =>
+      unlearned.some(w => w.word === id)
+    );
+
+    if (currentSession.length === 0) {
+      currentSession = replenishSession(unlearned);
+    } else if (activeSessionIds.length !== currentSession.length) {
+      setActiveSessionIds(currentSession);
+    }
+
+    const availableWords = unlearned.filter(w => currentSession.includes(w.word));
+
+    if (availableWords.length === 0) {
       setCurrentWord(null);
       return;
     }
 
     let nextWord;
-    if (currentWord) {
-      const currentIndex = available.findIndex(w => w.word === currentWord.word);
-      nextWord = available[(currentIndex + 1) % available.length];
+    if (currentWord && availableWords.some(w => w.word === currentWord.word)) {
+      const currentIndex = availableWords.findIndex(w => w.word === currentWord.word);
+      nextWord = availableWords[(currentIndex + 1) % availableWords.length];
     } else {
-      nextWord = available[0];
+      nextWord = availableWords[0];
     }
 
     setCurrentWord(nextWord);
-  }, [words, currentWord]);
-
-  useEffect(() => {
-    if (!currentWord && words.length > 0) {
-      const available = words.filter(w => (w.streak || 0) < 3);
-      if (available.length > 0) selectNewWord();
-    }
-  }, [words, currentWord, selectNewWord]);
+  }, [words, currentWord, activeSessionIds, replenishSession]);
 
   const handleEvaluation = (isCorrect) => {
     if (!currentWord) return;
@@ -115,6 +141,12 @@ const App = () => {
     setWords(updatedWords);
     selectNewWord();
   };
+
+  useEffect(() => {
+    if (!currentWord && words.length > 0) {
+      selectNewWord();
+    }
+  }, [words, currentWord, selectNewWord]);
 
   const masteredCount = words.filter(w => (w.streak || 0) >= 3).length;
 
@@ -215,7 +247,14 @@ const App = () => {
         </AnimatePresence>
       </main>
 
-      <div className="mt-auto pt-8 flex justify-center">
+      <div className="mt-auto pt-8 flex flex-col items-center gap-4">
+        <a
+          href="/yds_master_list.json"
+          download="yds_master_list.json"
+          className="text-[10px] uppercase tracking-widest text-slate-500 hover:text-indigo-400 transition-colors font-bold flex items-center gap-2"
+        >
+          <Info size={12} /> Download YDS Master List (.json)
+        </a>
         <button
           onClick={() => setShowManager(!showManager)}
           className="flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900 border border-slate-800 hover:border-slate-700 transition-all text-slate-400 hover:text-slate-100"

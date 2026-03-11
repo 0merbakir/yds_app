@@ -6,34 +6,56 @@ const Flashcard = ({ word, onEvaluate }) => {
     const [isFlipped, setIsFlipped] = useState(false);
     const [shake, setShake] = useState(false);
     const [exitDirection, setExitDirection] = useState(null);
+    const [isProcessing, setIsProcessing] = useState(false);
 
     useEffect(() => {
         setIsFlipped(false);
         setExitDirection(null);
+        setShake(false);
+        setIsProcessing(false);
     }, [word]);
 
-    const handleFlip = () => setIsFlipped(!isFlipped);
+    const handleFlip = () => {
+        if (isProcessing) return;
+        setIsFlipped(!isFlipped);
+    };
 
     const handleChoice = (isCorrect) => {
+        if (isProcessing) return;
+        setIsProcessing(true);
+
         if (!isCorrect) {
             setShake(true);
-            setTimeout(() => setShake(false), 500);
+            setTimeout(() => {
+                setShake(false);
+                onEvaluate(false);
+            }, 500);
         } else {
             setExitDirection('up');
+            setTimeout(() => {
+                onEvaluate(true);
+            }, 600);
         }
-        onEvaluate(isCorrect);
     };
 
     useEffect(() => {
         const handleKeyDown = (e) => {
+            if (isProcessing) return;
+
             if (e.code === 'Space') {
                 e.preventDefault();
                 handleFlip();
+            } else if (isFlipped) {
+                if (e.code === 'ArrowRight') {
+                    handleChoice(true);
+                } else if (e.code === 'ArrowLeft') {
+                    handleChoice(false);
+                }
             }
         };
         window.addEventListener('keydown', handleKeyDown);
         return () => window.removeEventListener('keydown', handleKeyDown);
-    }, [isFlipped]);
+    }, [isFlipped, isProcessing, word]);
 
     return (
         <div className="relative w-full max-w-sm aspect-[3/4] perspective-1000">
