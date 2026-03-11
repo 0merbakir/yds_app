@@ -285,6 +285,7 @@ const App = () => {
         masteredCount={masteredCount}
         totalCount={words.length}
         progress={(masteredCount / words.length) * 100 || 0}
+        categoryName={CATEGORIES.find(c => c.id === currentCategory)?.name || ''}
       />
 
       <main className="flex-1 flex flex-col items-center justify-center py-12">

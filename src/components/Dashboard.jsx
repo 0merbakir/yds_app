@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Trophy } from 'lucide-react';
 
-const Dashboard = ({ masteredCount, totalCount, progress }) => {
+const Dashboard = ({ masteredCount, totalCount, progress, categoryName }) => {
     return (
         <header className="mb-12">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
@@ -25,6 +25,7 @@ const Dashboard = ({ masteredCount, totalCount, progress }) => {
 
             <div className="relative h-2 w-full bg-slate-900 rounded-full overflow-hidden border border-slate-800">
                 <motion.div
+                    key={categoryName}
                     initial={{ width: 0 }}
                     animate={{ width: `${progress}%` }}
                     transition={{ duration: 1, ease: "easeOut" }}
@@ -34,7 +35,7 @@ const Dashboard = ({ masteredCount, totalCount, progress }) => {
             <div className="flex justify-between items-center mt-2 px-1">
                 <div className="flex items-center gap-2">
                     <span className="text-indigo-400 font-black text-lg">%{progress.toFixed(1)}</span>
-                    <span className="text-[10px] text-slate-500 font-bold uppercase tracking-widest mt-1">Tamamlandı</span>
+                    <span className="text-[10px] text-slate-500 font-bold uppercase tracking-widest mt-1">{categoryName} Tamamlandı</span>
                 </div>
                 <span className="text-[10px] text-slate-500 font-bold uppercase tracking-widest">{masteredCount} / {totalCount} Kelime</span>
             </div>
