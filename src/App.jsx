@@ -52,6 +52,10 @@ const App = () => {
     const categoryFile = CATEGORIES.find(c => c.id === currentCategory)?.file;
     if (!categoryFile) return;
 
+    // Reset immediately so chart updates at once
+    setWords([]);
+    setCurrentWord(null);
+
     fetch(categoryFile)
       .then(res => res.json())
       .then(freshData => {
@@ -67,6 +71,7 @@ const App = () => {
       })
       .catch(err => console.error('Error loading category:', err));
   }, [currentCategory]);
+
 
   // Save streaks separately (words always come from JSON)
   const saveStreaks = (updatedWords) => {
