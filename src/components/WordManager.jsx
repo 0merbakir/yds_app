@@ -1,0 +1,202 @@
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import { X, Upload, Plus, Trash2, BookOpen } from 'lucide-react';
+
+const WordManager = ({ words, setWords, onClose }) => {
+    const [newWord, setNewWord] = useState({ word: '', meaning: '', sentence: '' });
+    const [isDragging, setIsDragging] = useState(false);
+
+    const handleAddWord = (e) => {
+        e.preventDefault();
+        if (!newWord.word || !newWord.meaning) return;
+
+        // Check if word already exists
+        if (words.some(w => w.word.toLowerCase() === newWord.word.toLowerCase())) {
+            alert('This word already exists in your vault!');
+            return;
+        }
+
+        setWords([...words, { ...newWord, streak: 0, status: 'Learning' }]);
+        setNewWord({ word: '', meaning: '', sentence: '' });
+    };
+
+    const handleDelete = (wordToDelete) => {
+        setWords(words.filter(w => w.word !== wordToDelete));
+    };
+
+    const handleFileUpload = (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            try {
+                const json = JSON.parse(event.target.result);
+                if (Array.isArray(json)) {
+                    const existingWords = new Set(words.map(w => w.word.toLowerCase()));
+                    const newWords = json.filter(w => {
+                        const isDuplicate = existingWords.has(w.word.toLowerCase());
+                        if (isDuplicate) return false;
+                        existingWords.add(w.word.toLowerCase());
+                        return true;
+                    });
+
+                    setWords([...words, ...newWords.map(w => ({
+                        ...w,
+                        streak: w.streak || 0,
+                        status: w.status || 'Learning'
+                    }))]);
+                }
+            } catch (err) {
+                alert('Invalid JSON file!');
+            }
+        };
+        reader.readAsText(file);
+    };
+
+    const learningWords = words.filter(w => (w.streak || 0) < 3);
+    const masteredWords = words.filter(w => (w.streak || 0) >= 3);
+
+    return (
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+        >
+            <motion.div
+                initial={{ scale: 0.9, y: 20 }}
+                animate={{ scale: 1, y: 0 }}
+                exit={{ scale: 0.9, y: 20 }}
+                className="w-full max-w-2xl bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]"
+            >
+                <div className="p-6 border-b border-slate-800 flex items-center justify-between bg-slate-900/50">
+                    <h2 className="text-xl font-bold flex items-center gap-2">
+                        <BookOpen className="text-indigo-400" />
+                        Word Vault ({words.length})
+                    </h2>
+                    <button onClick={onClose} className="p-2 hover:bg-slate-800 rounded-full transition-colors">
+                        <X size={20} />
+                    </button>
+                </div>
+
+                <div className="flex-1 overflow-y-auto p-6 space-y-8">
+                    {/* Bulk Upload */}
+                    <div>
+                        <label className="block text-sm font-medium text-slate-400 mb-2 uppercase tracking-widest">Bulk Upload</label>
+                        <div
+                            onDragOver={(e) => { e.preventDefault(); setIsDragging(true); }}
+                            onDragLeave={() => setIsDragging(false)}
+                            onDrop={(e) => {
+                                e.preventDefault();
+                                setIsDragging(false);
+                                const file = e.dataTransfer.files[0];
+                                if (file) handleFileUpload({ target: { files: [file] } });
+                            }}
+                            className={`border-2 border-dashed rounded-2xl p-8 text-center transition-all ${isDragging ? 'border-indigo-500 bg-indigo-500/10' : 'border-slate-800 hover:border-slate-700'
+                                }`}
+                        >
+                            <Upload className="w-10 h-10 mx-auto mb-4 text-slate-500" />
+                            <p className="text-slate-400 mb-4">Drag and drop a JSON file here or select one</p>
+                            <input
+                                type="file"
+                                accept=".json"
+                                onChange={handleFileUpload}
+                                className="hidden"
+                                id="json-upload"
+                            />
+                            <label
+                                htmlFor="json-upload"
+                                className="px-6 py-2 bg-slate-800 hover:bg-slate-700 rounded-lg cursor-pointer transition-colors text-sm font-medium"
+                            >
+                                Select File
+                            </label>
+                        </div>
+                    </div>
+
+                    {/* Manual Entry */}
+                    <div>
+                        <label className="block text-sm font-medium text-slate-400 mb-2 uppercase tracking-widest">Add New Word</label>
+                        <form onSubmit={handleAddWord} className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <input
+                                placeholder="Word"
+                                className="bg-slate-950 border border-slate-800 rounded-xl px-4 py-2 focus:ring-2 focus:ring-indigo-500 outline-none"
+                                value={newWord.word}
+                                onChange={e => setNewWord({ ...newWord, word: e.target.value })}
+                            />
+                            <input
+                                placeholder="Meaning"
+                                className="bg-slate-950 border border-slate-800 rounded-xl px-4 py-2 focus:ring-2 focus:ring-indigo-500 outline-none"
+                                value={newWord.meaning}
+                                onChange={e => setNewWord({ ...newWord, meaning: e.target.value })}
+                            />
+                            <input
+                                placeholder="Example Sentence"
+                                className="bg-slate-950 border border-slate-800 rounded-xl px-4 py-2 focus:ring-2 focus:ring-indigo-500 outline-none md:col-span-2"
+                                value={newWord.sentence}
+                                onChange={e => setNewWord({ ...newWord, sentence: e.target.value })}
+                            />
+                            <button className="md:col-span-2 btn-primary flex items-center justify-center gap-2">
+                                <Plus size={18} /> Add
+                            </button>
+                        </form>
+                    </div>
+
+                    {/* Categorized Lists */}
+                    <div className="space-y-6">
+                        {learningWords.length > 0 && (
+                            <div>
+                                <label className="block text-sm font-medium text-indigo-400 mb-4 uppercase tracking-widest flex items-center gap-2">
+                                    <div className="w-2 h-2 bg-indigo-500 rounded-full animate-pulse" />
+                                    Currently Learning ({learningWords.length})
+                                </label>
+                                <div className="grid grid-cols-1 gap-2">
+                                    {learningWords.map((w, i) => (
+                                        <WordRow key={w.word} w={w} onDelete={() => handleDelete(w.word)} />
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+
+                        {masteredWords.length > 0 && (
+                            <div>
+                                <label className="block text-sm font-medium text-green-400 mb-4 uppercase tracking-widest flex items-center gap-2">
+                                    <div className="w-2 h-2 bg-green-500 rounded-full" />
+                                    Mastered Words ({masteredWords.length})
+                                </label>
+                                <div className="grid grid-cols-1 gap-2 transparency-50">
+                                    {masteredWords.map((w, i) => (
+                                        <WordRow key={w.word} w={w} onDelete={() => handleDelete(w.word)} isMastered />
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            </motion.div>
+        </motion.div>
+    );
+};
+
+const WordRow = ({ w, onDelete, isMastered }) => (
+    <div className={`flex items-center justify-between p-4 bg-slate-950/50 border border-slate-800 rounded-xl group hover:border-slate-700 transition-all ${isMastered ? 'opacity-60 hover:opacity-100' : ''}`}>
+        <div>
+            <span className={`font-bold ${isMastered ? 'text-green-400' : 'text-slate-100'}`}>{w.word}</span>
+            <span className="mx-2 text-slate-600">→</span>
+            <span className="text-slate-400">{w.meaning}</span>
+            <div className="flex gap-1 mt-1">
+                {[...Array(3)].map((_, i) => (
+                    <div key={i} className={`w-2 h-1 rounded-full ${i < (w.streak || 0) ? (isMastered ? 'bg-green-500' : 'bg-indigo-500') : 'bg-slate-800'}`} />
+                ))}
+            </div>
+        </div>
+        <button
+            onClick={onDelete}
+            className="p-2 text-slate-600 hover:text-red-400 opacity-0 group-hover:opacity-100 transition-all"
+        >
+            <Trash2 size={16} />
+        </button>
+    </div>
+);
+
+export default WordManager;
