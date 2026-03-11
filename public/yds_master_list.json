@@ -1811,4 +1811,977 @@
         "streak": 0,
         "status": "learning"
     }
+  {
+        "word": "Invariably",
+        "meaning": "Daima, değişmez bir şekilde",
+        "sentence": "Success invariably requires a high degree of perseverance and discipline.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Lament",
+        "meaning": "Ağıt yakmak, üzülmek",
+        "sentence": "Many environmentalists lament the loss of biodiversity due to urbanization.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Manifest",
+        "meaning": "Açıkça göstermek, belirgin",
+        "sentence": "The social tensions in the city started to manifest in frequent protests.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Negligible",
+        "meaning": "İhmal edilebilir, çok az",
+        "sentence": "The difference in cost between the two options is negligible in the long run.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Obscure",
+        "meaning": "Gizlemek, belirsizleştirmek",
+        "sentence": "The heavy fog began to obscure the driver's view of the road.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Paramount",
+        "meaning": "En önemli, üstün",
+        "sentence": "The safety of the passengers is of paramount importance to the airline.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Qualify",
+        "meaning": "Nitelemek, hak kazanmak",
+        "sentence": "You need to complete the course in order to qualify for the certificate.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Rectify",
+        "meaning": "Düzeltmek, iyileştirmek",
+        "sentence": "The company promises to rectify the situation as soon as possible.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Scrutinize",
+        "meaning": "Dikkatle incelemek",
+        "sentence": "The committee will carefully scrutinize every detail of the proposal.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Tangible",
+        "meaning": "Somut, elle tutulur",
+        "sentence": "The investment has led to tangible benefits for the local community.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Undermine",
+        "meaning": "Baltalamak, zayıflatmak",
+        "sentence": "Continuous criticism can undermine a person's self-confidence.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Violate",
+        "meaning": "İhlal etmek, bozmak",
+        "sentence": "Building on protected land is a direct violation of local laws.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Warrant",
+        "meaning": "Garanti etmek, haklı çıkarmak",
+        "sentence": "The evidence is strong enough to warrant a full investigation.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Accelerate",
+        "meaning": "Hızlandırmak",
+        "sentence": "Technological innovation can significantly accelerate economic growth.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Accommodate",
+        "meaning": "Barındırmak, uyum sağlamak",
+        "sentence": "The hotel can accommodate up to five hundred guests comfortably.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Alleviate",
+        "meaning": "Hafifletmek, yatıştırmak",
+        "sentence": "The new medicine is designed to alleviate chronic back pain.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Ascend",
+        "meaning": "Yükselmek, yukarı çıkmak",
+        "sentence": "The path begins to ascend steeply as you approach the mountain peak.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Augment",
+        "meaning": "Artırmak, çoğaltmak",
+        "sentence": "The company plans to augment its workforce with several new hires.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Benevolent",
+        "meaning": "Hayırsever, iyiliksever",
+        "sentence": "The organization depends on the support of benevolent donors.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Capitulate",
+        "meaning": "Teslim olmak, boyun eğmek",
+        "sentence": "The rebels were forced to capitulate after weeks of heavy fighting.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Chronological",
+        "meaning": "Kronolojik, zaman sırasına göre",
+        "sentence": "The artifacts are displayed in chronological order in the museum.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Compliance",
+        "meaning": "Uyum, riayet",
+        "sentence": "All employees must act in compliance with the company's safety rules.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Concise",
+        "meaning": "Kısa ve öz",
+        "sentence": "The report should be as concise as possible while remaining informative.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Condone",
+        "meaning": "Göz yummak, affetmek",
+        "sentence": "The school does not condone violence or bullying in any form.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Convene",
+        "meaning": "Toplanmak, toplantı yapmak",
+        "sentence": "The committee will convene next week to discuss the budget cuts.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Cumbersome",
+        "meaning": "Hantal, taşıması güç",
+        "sentence": "The old machinery was very cumbersome and difficult to operate.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Debilitate",
+        "meaning": "Zayıflatmak, güçten düşürmek",
+        "sentence": "The disease can severely debilitate physical and mental functions.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Deference",
+        "meaning": "Saygı, hürmet",
+        "sentence": "Out of deference to the traditional customs, guests are asked to dress formally.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Denounce",
+        "meaning": "Kınamak, ihbar etmek",
+        "sentence": "World leaders were quick to denounce the recent terrorist attacks.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Deteriorate",
+        "meaning": "Kötüleşmek, bozulmak",
+        "sentence": "The weather conditions began to deteriorate as the storm approached.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Disdain",
+        "meaning": "Küçümseme, hor görme",
+        "sentence": "He treated the suggestions of his colleagues with open disdain.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Disparity",
+        "meaning": "Eşitsizlik, fark",
+        "sentence": "There is a significant disparity in wealth between different regions.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Elaborate",
+        "meaning": "Ayrıntılı, detaylı",
+        "sentence": "The researchers have developed an elaborate model of global climate.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Eloquent",
+        "meaning": "Dokunaklı, güzel konuşan",
+        "sentence": "He gave an eloquent speech that moved many in the audience to tears.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Elucidate",
+        "meaning": "Açıklığa kavuşturmak",
+        "sentence": "The tutorial is designed to elucidate the main points of the course.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Eminent",
+        "meaning": "Seçkin, üstün",
+        "sentence": "He is an eminent scientist who has won several prestigious awards.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Enigma",
+        "meaning": "Bilmecemsi, gizem",
+        "sentence": "The disappearance of the flight remains a complete enigma to this day.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Erratic",
+        "meaning": "Düzensiz, değişken",
+        "sentence": "The patient's behavior has been very erratic over the last few days.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Exemplify",
+        "meaning": "Örneklemek, göstermek",
+        "sentence": "The new policy aims to exemplify the city's commitment to sustainability.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Exorbitant",
+        "meaning": "Fahiş, aşırı",
+        "sentence": "The price of real estate in the city has reached exorbitant levels.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Expenditure",
+        "meaning": "Harcama, gider",
+        "sentence": "The government is trying to reduce its annual expenditure on defense.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Fallacy",
+        "meaning": "Yanlış inanış, safsata",
+        "sentence": "It is a common fallacy that all cats hate water.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Frugal",
+        "meaning": "Tutumlu, idareli",
+        "sentence": "She managed to save a lot of money by leading a very frugal life.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Gratuitous",
+        "meaning": "Sebepsiz, gereksiz",
+        "sentence": "The movie was criticized for its gratuitous violence and nudity.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Hierarchy",
+        "meaning": "Hiyerarşi, aşama sırası",
+        "sentence": "There is a strict hierarchy within the military command structure.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Hindrance",
+        "meaning": "Engel, ayak bağı",
+        "sentence": "Small children can sometimes be a hindrance while trying to do work.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Immaculate",
+        "meaning": "Lekesiz, kusursuz",
+        "sentence": "The house was kept in immaculate condition by the previous owners.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Imminent",
+        "meaning": "Yakın, eli kulağında",
+        "sentence": "The dark clouds suggest that a heavy rainstorm is imminent.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Impartial",
+        "meaning": "Tarafsız, yansız",
+        "sentence": "The judge must remain impartial and listen to both sides of the case.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Impediment",
+        "meaning": "Engel, ayak bağı",
+        "sentence": "A lack of funding is a major impediment to the progress of the project.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Imperative",
+        "meaning": "Mecburiyet, zorunluluk",
+        "sentence": "It is imperative that we find a peaceful solution to this conflict.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Implicit",
+        "meaning": "Dolaylı, üstü kapalı",
+        "sentence": "There was an implicit agreement that the info would remain confidential.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Implausible",
+        "meaning": "İnanılmaz, akla yatmaz",
+        "sentence": "Her explanation for being late seemed highly implausible to the teacher.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Inadequate",
+        "meaning": "Yetersiz, noksan",
+        "sentence": "The current supply of water is inadequate to meet the city's needs.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Inadvertent",
+        "meaning": "Kasitsiz, yanlışlıkla",
+        "sentence": "The error was inadvertent and has already been corrected in the system.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Inception",
+        "meaning": "Başlangıç, kuruluş",
+        "sentence": "The company has grown significantly since its inception five years ago.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Indignant",
+        "meaning": "Dargın, kızgın",
+        "sentence": "He was indignant at the suggestion that he had cheated on the test.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Indispensable",
+        "meaning": "Vazgeçilmez, çok gerekli",
+        "sentence": "Computers have become indispensable tools in the modern workplace.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Inevitably",
+        "meaning": "Kaçınılmaz olarak",
+        "sentence": "The changes will inevitably lead to some disruption in the short term.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Infamous",
+        "meaning": "Kötü şöhretli",
+        "sentence": "The city is infamous for its high crime rate and dangerous streets.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Inhibitor",
+        "meaning": "Durdurucu, engelleyici",
+        "sentence": "Stress is often an inhibitor to creative thinking and performance.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Initiative",
+        "meaning": "Girişim, önayak olma",
+        "sentence": "The government has launched a new initiative to promote vocational training.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Innumerable",
+        "meaning": "Sayısız, çok fazla",
+        "sentence": "There are innumerable stars in the galaxy that we cannot see with our eyes.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Innovative",
+        "meaning": "Yenilikçi, inovatif",
+        "sentence": "The company is known for its innovative approach to product design.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Inquisitive",
+        "meaning": "Meraklı, araştırmacı",
+        "sentence": "Children are naturally inquisitive and ask many questions about the world.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Insignificant",
+        "meaning": "Önemsiz, etkisiz",
+        "sentence": "The cost of the repair was insignificant compared to the value of the car.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Integrity",
+        "meaning": "Bütünlük, dürüstlük",
+        "sentence": "The journalist was praised for her professional integrity and dedication.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Intermittent",
+        "meaning": "Kesikli, aralıklı",
+        "sentence": "The city has been experiencing intermittent power outages due to the storm.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Intricate",
+        "meaning": "Karmaşık, girift",
+        "sentence": "The jewelry was made of intricate patterns of gold and silver wire.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Intrinsic",
+        "meaning": "Asıl, özünde olan",
+        "sentence": "The value of a diamond is not based solely on its intrinsic quality.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Intuitive",
+        "meaning": "Sezgisel",
+        "sentence": "The software is designed to be intuitive and easy for anyone to use.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Invoke",
+        "meaning": "Yardım istemek, yalvarmak",
+        "sentence": "The president has the power to invoke emergency measures in a crisis.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Irrelevant",
+        "meaning": "Alakasız, yersiz",
+        "sentence": "His personal life is completely irrelevant to his ability to do the job.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Judicious",
+        "meaning": "Mantıklı, makul",
+        "sentence": "The judicious use of resources can help the company stay competitive.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Kindle",
+        "meaning": "Canlandırmak, tutuşturmak",
+        "sentence": "His speech aimed to kindle a sense of hope and optimism in the hearts of people.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Languid",
+        "meaning": "Halsiz, bitkin",
+        "sentence": "The weather was hot and humid, leaving everyone feeling languid.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Latent",
+        "meaning": "Gizli, örtük",
+        "sentence": "Psychologists are working to understand the latent causes of depression.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Legacy",
+        "meaning": "Miras, kalıt",
+        "sentence": "The former president left behind a legacy of progress and social reform.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Levity",
+        "meaning": "Ciddiyetsizlik, hafiflik",
+        "sentence": "The speaker used humor to bring a sense of levity to a very serious topic.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Liable",
+        "meaning": "Sorumlu, yükümlü",
+        "sentence": "The driver was held liable for the damages caused by the accident.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Loquacious",
+        "meaning": "Konuşkan, geveze",
+        "sentence": "She is a very loquacious person who can talk for hours about any topic.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Lucid",
+        "meaning": "Açık, anlaşılır",
+        "sentence": "Despite his old age, he remains very lucid and alert in his thinking.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Magnanimous",
+        "meaning": "Cömert, yüce gönüllü",
+        "sentence": "The businessman made a magnanimous donation to the local hospital.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Maintenance",
+        "meaning": "Bakım, onarım",
+        "sentence": "Regular maintenance of your car can help prevent costly repairs later.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Malice",
+        "meaning": "Kötü niyet, hınç",
+        "sentence": "The rumors were spread with open malice to damage her reputation.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Mandatory",
+        "meaning": "Zorunlu",
+        "sentence": "It is mandatory for all students to wear a school uniform at all times.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Mediocre",
+        "meaning": "Sıradan, vasat",
+        "sentence": "The restaurant received mixed reviews for its rather mediocre food.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Meticulous",
+        "meaning": "Titiz, kılı kırk yaran",
+        "sentence": "The project was completed with meticulous attention to every small detail.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Mock",
+        "meaning": "Alay etmek, taklit",
+        "sentence": "It is not kind to mock others for their mistakes or appearances.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Mutual",
+        "meaning": "Karşılıklı, ortak",
+        "sentence": "The two countries signed a treaty based on mutual respect and cooperation.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Naive",
+        "meaning": "Toy, saf",
+        "sentence": "It was naive to believe that the problem would disappear on its own.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Negligence",
+        "meaning": "İhmal, dikkatsizlik",
+        "sentence": "The company was sued for negligence after a series of workplace accidents.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Nimble",
+        "meaning": "Çevik, atik",
+        "sentence": "The gymnast used her nimble fingers to perform intricate movements.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Novel",
+        "meaning": "Yeni, orijinal",
+        "sentence": "The researchers have proposed a novel approach to tackling the crisis.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Nurture",
+        "meaning": "Beslemek, bakmak",
+        "sentence": "Parents should strive to nurture their children's talents and interests.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Obliterate",
+        "meaning": "Yok etmek, silmek",
+        "sentence": "The heavy rain threatened to obliterate the tracks of the animals.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Obsolete",
+        "meaning": "Eski moda, modası geçmiş",
+        "sentence": "Typewriters have become obsolete with the rise of personal computers.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Obstruction",
+        "meaning": "Engel, tıkanıklık",
+        "sentence": "The fallen tree created a serious obstruction on the main road.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Opportune",
+        "meaning": "Uygun, yerinde",
+        "sentence": "The timing of the announcement was very opportune after recent events.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Ostentatious",
+        "meaning": "Gösterişli, sükse",
+        "sentence": "She dressed in an ostentatious manner to attract attention at the party.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Pace",
+        "meaning": "Hız, adım",
+        "sentence": "The pace of technological change is much faster than it was in the past.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Paralyze",
+        "meaning": "Felç etmek",
+        "sentence": "The blizzard threatened to paralyze the entire city for several days.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Pedestrian",
+        "meaning": "Yaya, sıradan",
+        "sentence": "The book was criticized for its slow pace and rather pedestrian prose.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Persevere",
+        "meaning": "Azmetmek, direnmek",
+        "sentence": "You must persevere in your efforts if you want to achieve your goals.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Pervasive",
+        "meaning": "Yaygın, her yere dağılmış",
+        "sentence": "Corruption has become a pervasive problem within many world governments.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Petty",
+        "meaning": "Küçük, önemsiz",
+        "sentence": "Legal systems can be slow and bogged down by many petty disputes.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Pittance",
+        "meaning": "Azıcık para",
+        "sentence": "He works long hours for a mere pittance that is barely enough to live on.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Placid",
+        "meaning": "Sakin, uysal",
+        "sentence": "The lake was calm and placid in the early morning light.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Platitude",
+        "meaning": "Bayağılık, beylik söz",
+        "sentence": "The politician's speech was full of meaningless platitudes and promises.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Pliable",
+        "meaning": "Esnek, uysal",
+        "sentence": "The clay is very pliable and can be easily shaped into different forms.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Plight",
+        "meaning": "Kötü durum, söz",
+        "sentence": "The charity is working to raise awareness about the plight of refugees.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Poignant",
+        "meaning": "Dokunaklı, acıklı",
+        "sentence": "The movie tells a poignant story about family, love, and loss.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Potent",
+        "meaning": "Güçlü, etkili",
+        "sentence": "The new drug is very potent and must be administered with great care.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Precaution",
+        "meaning": "Önlem, tedbir",
+        "sentence": "It is better to take precautions now than to have to fix a problem later.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Preclude",
+        "meaning": "Engel olmak, önlemek",
+        "sentence": "A lack of qualifications will preclude you from being considered for the job.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Predecessor",
+        "meaning": "Önce gelen, selef",
+        "sentence": "The new manager has a very different style than her predecessor did.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Preferential",
+        "meaning": "Ayrıcalıklı",
+        "sentence": "The company offers preferential rates to its most loyal customers.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Premature",
+        "meaning": "Erken, vaktinden önce",
+        "sentence": "The merger was called off after it was clear it was a premature decision.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Prerequisite",
+        "meaning": "Önkoşul",
+        "sentence": "A degree in computer science is a prerequisite for this position.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Preserve",
+        "meaning": "Korumak, muhafaza etmek",
+        "sentence": "We must work together to preserve these beautiful natural habitats.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Prestige",
+        "meaning": "Prestij, itibar",
+        "sentence": "Winning the award has brought a lot of prestige to the university.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Presumptuous",
+        "meaning": "Küstah, haddini bilmez",
+        "sentence": "It was presumptuous of him to assume that everyone would agree with him.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Prevalent",
+        "meaning": "Yaygın, genel",
+        "sentence": "Skin cancer is more prevalent in countries with a lot of sun exposure.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Primitive",
+        "meaning": "İlkel, kaba",
+        "sentence": "The tribes use primitive tools made of stone, bone, and wood.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Priority",
+        "meaning": "Öncelik",
+        "sentence": "Education and healthcare should be a priority for every world leader.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Pristine",
+        "meaning": "Tertemiz, el değmemiş",
+        "sentence": "The beach was in pristine condition, with crystal clear water and white sand.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Probability",
+        "meaning": "Olasılık, ihtimal",
+        "sentence": "There is a high probability that it will rain later today.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Procrastinate",
+        "meaning": "Ertelemek, savsaklamak",
+        "sentence": "Don't procrastinate; start working on your final project today.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Profound",
+        "meaning": "Derin, köklü",
+        "sentence": "The invention of the internet has had a profound impact on society.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Prolific",
+        "meaning": "Verimli, üretken",
+        "sentence": "She is a prolific writer who has published over twenty books in ten years.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Prominent",
+        "meaning": "Öne çıkan, seçkin",
+        "sentence": "He is a prominent figure in the world of international finance and banking.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Prompt",
+        "meaning": "Çabuk, hızlı",
+        "sentence": "The customer service was very prompt and handled my issue within minutes.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Prone",
+        "meaning": "Yatkın",
+        "sentence": "People who are stressed are often more prone to illness and fatigue.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Propensity",
+        "meaning": "Eğilim, meyil",
+        "sentence": "Critics argue that humans have a natural propensity for violence and war.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Proper",
+        "meaning": "Uygun, doğru",
+        "sentence": "It is important to follow the proper procedure when handling chemicals.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Prosperity",
+        "meaning": "Refah, bolluk",
+        "sentence": "The country experienced a long period of economic growth and prosperity.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Proximity",
+        "meaning": "Yakınlık",
+        "sentence": "The house is in close proximity to the city center and public transport.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Prudently",
+        "meaning": "İhtiyatlı bir şekilde",
+        "sentence": "Investors should manage their portfolios prudently to minimize potential risks.",
+        "streak": 0,
+        "status": "learning"
+    },
+    {
+        "word": "Punctual",
+        "meaning": "Dakik",
+        "sentence": "Meeting started on time as all participants were extremely punctual.",
+        "streak": 0,
+        "status": "learning"
+    }
 ]
