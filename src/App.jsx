@@ -27,10 +27,7 @@ const App = () => {
     return localStorage.getItem('yds_current_category') || 'verbs';
   });
 
-  const [words, setWords] = useState(() => {
-    const saved = localStorage.getItem(`yds_words_${currentCategory}`);
-    return saved ? JSON.parse(saved) : [];
-  });
+  const [words, setWords] = useState([]);
 
   const [currentWord, setCurrentWord] = useState(null);
   const [showManager, setShowManager] = useState(false);
@@ -50,31 +47,34 @@ const App = () => {
     localStorage.setItem('yds_current_category', currentCategory);
   }, [currentCategory]);
 
-  // Load category data if local storage is empty
+  // Load category: always fetch from JSON, restore saved streaks
   useEffect(() => {
-    const savedWords = localStorage.getItem(`yds_words_${currentCategory}`);
-    if (savedWords) {
-      const parsed = JSON.parse(savedWords);
-      setWords(parsed);
-      const savedSession = localStorage.getItem(`yds_active_session_${currentCategory}`);
-      setActiveSessionIds(savedSession ? JSON.parse(savedSession) : []);
-    } else {
-      const categoryFile = CATEGORIES.find(c => c.id === currentCategory)?.file;
-      if (categoryFile) {
-        fetch(categoryFile)
-          .then(res => res.json())
-          .then(data => {
-            setWords(data);
-            localStorage.setItem(`yds_words_${currentCategory}`, JSON.stringify(data));
-          })
-          .catch(err => console.error("Error loading category:", err));
-      }
-    }
+    const categoryFile = CATEGORIES.find(c => c.id === currentCategory)?.file;
+    if (!categoryFile) return;
+
+    fetch(categoryFile)
+      .then(res => res.json())
+      .then(freshData => {
+        const savedStreaks = localStorage.getItem(`yds_streaks_${currentCategory}`);
+        const streakMap = savedStreaks ? JSON.parse(savedStreaks) : {};
+        const merged = freshData.map(w => ({
+          ...w,
+          streak: streakMap[w.word] || 0,
+        }));
+        setWords(merged);
+        const savedSession = localStorage.getItem(`yds_active_session_${currentCategory}`);
+        setActiveSessionIds(savedSession ? JSON.parse(savedSession) : []);
+      })
+      .catch(err => console.error('Error loading category:', err));
   }, [currentCategory]);
 
-  useEffect(() => {
-    localStorage.setItem(`yds_words_${currentCategory}`, JSON.stringify(words));
-  }, [words, currentCategory]);
+  // Save streaks separately (words always come from JSON)
+  const saveStreaks = (updatedWords) => {
+    const streakMap = {};
+    updatedWords.forEach(w => { if (w.streak) streakMap[w.word] = w.streak; });
+    localStorage.setItem(`yds_streaks_${currentCategory}`, JSON.stringify(streakMap));
+  };
+
 
   useEffect(() => {
     localStorage.setItem(`yds_active_session_${currentCategory}`, JSON.stringify(activeSessionIds));
@@ -160,20 +160,21 @@ const App = () => {
       w.word === wordValue ? { ...w, streak: 0 } : w
     );
     setWords(updatedWords);
+    saveStreaks(updatedWords);
   };
 
   const handleResetCategory = () => {
-    if (window.confirm(`Kategoriyi sıfırlamak ve orijinal dosyadan tekrar yüklemek istediğinize emin misiniz? Tüm ilerlemeniz silinecektir.`)) {
+    if (window.confirm(`Kategoriyi sıfırlamak istediğinize emin misiniz? Tüm ilerlemeniz silinecektir.`)) {
       const categoryFile = CATEGORIES.find(c => c.id === currentCategory)?.file;
       if (categoryFile) {
         fetch(categoryFile)
           .then(res => res.json())
           .then(data => {
             setWords(data);
-            localStorage.setItem(`yds_words_${currentCategory}`, JSON.stringify(data));
-            setActiveSessionIds([]); // Clear current session
+            localStorage.removeItem(`yds_streaks_${currentCategory}`);
+            setActiveSessionIds([]);
           })
-          .catch(err => console.error("Error resetting category:", err));
+          .catch(err => console.error('Error resetting category:', err));
       }
     }
   };
@@ -197,6 +198,7 @@ const App = () => {
       return w;
     });
     setWords(updatedWords);
+    saveStreaks(updatedWords);
     selectNewWord();
   };
 

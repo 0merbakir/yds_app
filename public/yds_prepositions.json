@@ -1,13 +1,554 @@
 [
-  { "word": "Aboard", "meaning": "Gemide, uçakta", "sentence": "Welcome aboard the flight to Istanbul.", "streak": 0, "status": "learning" },
-  { "word": "Beside", "meaning": "Yanına, yanında, dışında", "sentence": "Come and sit beside me.", "streak": 0, "status": "learning" },
-  { "word": "Despite", "meaning": "Karşın, rağmen", "sentence": "They enjoyed the picnic despite the rain.", "streak": 0, "status": "learning" },
-  { "word": "Due to", "meaning": "Dolayı, yüzünden", "sentence": "The match was cancelled due to heavy snow.", "streak": 0, "status": "learning" },
-  { "word": "Except", "meaning": "Dışında, haricinde", "sentence": "The shop is open every day except Sunday.", "streak": 0, "status": "learning" },
-  { "word": "Including", "meaning": "Kapsayan, dahil", "sentence": "The price is $50, including tax.", "streak": 0, "status": "learning" },
-  { "word": "Nearby", "meaning": "Yanında, civarında", "sentence": "Is there a pharmacy nearby?", "streak": 0, "status": "learning" },
-  { "word": "Sub", "meaning": "Alt, ast, aşağı", "sentence": "He is currently working as a sub-editor.", "streak": 0, "status": "learning" },
-  { "word": "Throughout", "meaning": "Baştan başa, boyunca, süresince", "sentence": "It rained throughout the night.", "streak": 0, "status": "learning" },
-  { "word": "Unlike", "meaning": "Farklı, farklı olarak, aksine", "sentence": "Unlike his brother, he is very shy.", "streak": 0, "status": "learning" },
-  { "word": "Via", "meaning": "Üzerinden, yolu ile", "sentence": "We flew to New York via London.", "streak": 0, "status": "learning" }
+    {
+        "word": "Aboard",
+        "meaning": "Gemide, uçakta",
+        "sentence": "Welcome aboard the flight to Istanbul.",
+        "status": "learning"
+    },
+    {
+        "word": "Beside",
+        "meaning": "Yanına, yanında, dışında",
+        "sentence": "Come and sit beside me.",
+        "status": "learning"
+    },
+    {
+        "word": "Despite",
+        "meaning": "Karşın, rağmen",
+        "sentence": "They enjoyed the picnic despite the rain.",
+        "status": "learning"
+    },
+    {
+        "word": "Due to",
+        "meaning": "Dolayı, yüzünden",
+        "sentence": "The match was cancelled due to heavy snow.",
+        "status": "learning"
+    },
+    {
+        "word": "Except",
+        "meaning": "Dışında, haricinde",
+        "sentence": "The shop is open every day except Sunday.",
+        "status": "learning"
+    },
+    {
+        "word": "Including",
+        "meaning": "Kapsayan, dahil",
+        "sentence": "The price is $50, including tax.",
+        "status": "learning"
+    },
+    {
+        "word": "Throughout",
+        "meaning": "Baştan başa, boyunca, süresince",
+        "sentence": "It rained throughout the night.",
+        "status": "learning"
+    },
+    {
+        "word": "Unlike",
+        "meaning": "Farklı olarak, aksine",
+        "sentence": "Unlike his brother, he is very shy.",
+        "status": "learning"
+    },
+    {
+        "word": "Via",
+        "meaning": "Üzerinden, yolu ile",
+        "sentence": "We flew to New York via London.",
+        "status": "learning"
+    },
+    {
+        "word": "Against",
+        "meaning": "Karşı, zıt",
+        "sentence": "They voted against the proposed reform.",
+        "status": "learning"
+    },
+    {
+        "word": "Along",
+        "meaning": "Boyunca",
+        "sentence": "We walked along the riverbank.",
+        "status": "learning"
+    },
+    {
+        "word": "Among",
+        "meaning": "Arasında (3+)",
+        "sentence": "The secret was shared among close friends.",
+        "status": "learning"
+    },
+    {
+        "word": "Amongst",
+        "meaning": "Arasında (3+)",
+        "sentence": "She was popular amongst her colleagues.",
+        "status": "learning"
+    },
+    {
+        "word": "Around",
+        "meaning": "Çevresinde, etrafında",
+        "sentence": "There are several universities around this area.",
+        "status": "learning"
+    },
+    {
+        "word": "At",
+        "meaning": "De, da (yer/zaman)",
+        "sentence": "She was at the conference all day.",
+        "status": "learning"
+    },
+    {
+        "word": "Before",
+        "meaning": "Önce, önünde",
+        "sentence": "He appeared before the judge.",
+        "status": "learning"
+    },
+    {
+        "word": "Behind",
+        "meaning": "Arkasında, gerisinde",
+        "sentence": "The motive behind his actions was unclear.",
+        "status": "learning"
+    },
+    {
+        "word": "Below",
+        "meaning": "Aşağısında, altında",
+        "sentence": "The temperature fell below freezing.",
+        "status": "learning"
+    },
+    {
+        "word": "Beneath",
+        "meaning": "Altında, aşağısında",
+        "sentence": "The cause of stress lies beneath the surface.",
+        "status": "learning"
+    },
+    {
+        "word": "Between",
+        "meaning": "Arasında (2)",
+        "sentence": "There is a clear distinction between the two theories.",
+        "status": "learning"
+    },
+    {
+        "word": "Beyond",
+        "meaning": "Ötesinde, dışında",
+        "sentence": "The damage was beyond repair.",
+        "status": "learning"
+    },
+    {
+        "word": "By",
+        "meaning": "Tarafından, ile",
+        "sentence": "The research was conducted by leading scientists.",
+        "status": "learning"
+    },
+    {
+        "word": "Concerning",
+        "meaning": "İle ilgili, hakkında",
+        "sentence": "Concerning the report, there are several errors.",
+        "status": "learning"
+    },
+    {
+        "word": "Considering",
+        "meaning": "Göz önünde bulundurulduğunda",
+        "sentence": "Considering his age, he is remarkably fit.",
+        "status": "learning"
+    },
+    {
+        "word": "During",
+        "meaning": "Boyunca, süresince, esnasında",
+        "sentence": "During the meeting, several issues were raised.",
+        "status": "learning"
+    },
+    {
+        "word": "Except for",
+        "meaning": "Dışında",
+        "sentence": "Everyone was present, except for the director.",
+        "status": "learning"
+    },
+    {
+        "word": "Following",
+        "meaning": "Ardından, akabinde",
+        "sentence": "Following the announcement, stocks rose sharply.",
+        "status": "learning"
+    },
+    {
+        "word": "For",
+        "meaning": "İçin, nedeniyle",
+        "sentence": "He was praised for his outstanding contribution.",
+        "status": "learning"
+    },
+    {
+        "word": "From",
+        "meaning": "Den, dan (kaynak)",
+        "sentence": "The data gathered from the study is conclusive.",
+        "status": "learning"
+    },
+    {
+        "word": "In",
+        "meaning": "İçinde, içeri",
+        "sentence": "She specializes in molecular biology.",
+        "status": "learning"
+    },
+    {
+        "word": "In accordance with",
+        "meaning": "Uygun olarak, doğrultusunda",
+        "sentence": "The new policy is in accordance with international law.",
+        "status": "learning"
+    },
+    {
+        "word": "In addition to",
+        "meaning": "E ek olarak, yanı sıra",
+        "sentence": "In addition to science, she studied philosophy.",
+        "status": "learning"
+    },
+    {
+        "word": "In favour of",
+        "meaning": "Lehine, destekleyerek",
+        "sentence": "The majority voted in favour of the proposal.",
+        "status": "learning"
+    },
+    {
+        "word": "In front of",
+        "meaning": "Önünde",
+        "sentence": "He made a speech in front of a large audience.",
+        "status": "learning"
+    },
+    {
+        "word": "In lieu of",
+        "meaning": "Yerine, bedeli olarak",
+        "sentence": "He received a cash payment in lieu of notice.",
+        "status": "learning"
+    },
+    {
+        "word": "In spite of",
+        "meaning": "Rağmen",
+        "sentence": "In spite of the difficulties, they succeeded.",
+        "status": "learning"
+    },
+    {
+        "word": "In terms of",
+        "meaning": "Açısından, bakımından",
+        "sentence": "In terms of productivity, the new system is superior.",
+        "status": "learning"
+    },
+    {
+        "word": "Instead of",
+        "meaning": "Yerine",
+        "sentence": "She chose art instead of medicine.",
+        "status": "learning"
+    },
+    {
+        "word": "Into",
+        "meaning": "İçine, içeri",
+        "sentence": "The research delves into the causes of inflation.",
+        "status": "learning"
+    },
+    {
+        "word": "Near",
+        "meaning": "Yakınında, yakın",
+        "sentence": "The new factory is located near the coast.",
+        "status": "learning"
+    },
+    {
+        "word": "Notwithstanding",
+        "meaning": "Rağmen, karşın",
+        "sentence": "Notwithstanding the criticism, the project continued.",
+        "status": "learning"
+    },
+    {
+        "word": "Of",
+        "meaning": "Nin, nın, nun, nün (aitlik)",
+        "sentence": "The discovery of this element changed chemistry.",
+        "status": "learning"
+    },
+    {
+        "word": "Off",
+        "meaning": "Uzağında, den uzak",
+        "sentence": "The island is off the coast of Scotland.",
+        "status": "learning"
+    },
+    {
+        "word": "On",
+        "meaning": "Üzerinde, hakkında",
+        "sentence": "She published a paper on climate change.",
+        "status": "learning"
+    },
+    {
+        "word": "On account of",
+        "meaning": "Nedeniyle, dolayısıyla",
+        "sentence": "The event was postponed on account of bad weather.",
+        "status": "learning"
+    },
+    {
+        "word": "On behalf of",
+        "meaning": "Adına, namına",
+        "sentence": "She accepted the award on behalf of the team.",
+        "status": "learning"
+    },
+    {
+        "word": "On top of",
+        "meaning": "Üstüne üstlük, ek olarak",
+        "sentence": "On top of his studies, he works part-time.",
+        "status": "learning"
+    },
+    {
+        "word": "Out of",
+        "meaning": "Dışında, içinden",
+        "sentence": "He resigned out of principle.",
+        "status": "learning"
+    },
+    {
+        "word": "Outside",
+        "meaning": "Dışında, haricinde",
+        "sentence": "The matter is outside our jurisdiction.",
+        "status": "learning"
+    },
+    {
+        "word": "Over",
+        "meaning": "Üzerinde, boyunca, hakkında",
+        "sentence": "There has been much debate over this issue.",
+        "status": "learning"
+    },
+    {
+        "word": "Past",
+        "meaning": "Geçerek, ötesinde",
+        "sentence": "The deadline has gone past.",
+        "status": "learning"
+    },
+    {
+        "word": "Pending",
+        "meaning": "Beklenirken, sürerken",
+        "sentence": "Pending approval, the project will begin next month.",
+        "status": "learning"
+    },
+    {
+        "word": "Per",
+        "meaning": "Başına, üzerinden",
+        "sentence": "The medication should be taken twice per day.",
+        "status": "learning"
+    },
+    {
+        "word": "Plus",
+        "meaning": "Artı, ek olarak",
+        "sentence": "The fee is £100 plus VAT.",
+        "status": "learning"
+    },
+    {
+        "word": "Prior to",
+        "meaning": "Öncesinde, önce",
+        "sentence": "Prior to the experiment, all variables were controlled.",
+        "status": "learning"
+    },
+    {
+        "word": "Regarding",
+        "meaning": "İle ilgili, hakkında",
+        "sentence": "Regarding your application, we need further documents.",
+        "status": "learning"
+    },
+    {
+        "word": "Regardless of",
+        "meaning": "Bakılmaksızın",
+        "sentence": "The rule applies to everyone, regardless of status.",
+        "status": "learning"
+    },
+    {
+        "word": "Since",
+        "meaning": "Den beri",
+        "sentence": "She has been working here since 2015.",
+        "status": "learning"
+    },
+    {
+        "word": "Than",
+        "meaning": "Den, dan (karşılaştırma)",
+        "sentence": "The results were worse than expected.",
+        "status": "learning"
+    },
+    {
+        "word": "Through",
+        "meaning": "Boyunca, içinden, aracılığıyla",
+        "sentence": "Change often comes through persistent effort.",
+        "status": "learning"
+    },
+    {
+        "word": "Till",
+        "meaning": "E kadar",
+        "sentence": "We will wait till the results are confirmed.",
+        "status": "learning"
+    },
+    {
+        "word": "To",
+        "meaning": "E, a, ya, ye",
+        "sentence": "He devoted his life to scientific research.",
+        "status": "learning"
+    },
+    {
+        "word": "Toward",
+        "meaning": "Doğru, yönelik",
+        "sentence": "The study is aimed toward reducing poverty.",
+        "status": "learning"
+    },
+    {
+        "word": "Under",
+        "meaning": "Altında, üzerinde (kontrol)",
+        "sentence": "The area is under strict environmental protection.",
+        "status": "learning"
+    },
+    {
+        "word": "Until",
+        "meaning": "E kadar, -e dek",
+        "sentence": "They waited until the final verdict was delivered.",
+        "status": "learning"
+    },
+    {
+        "word": "Up to",
+        "meaning": "E kadar, bağlı",
+        "sentence": "It is up to the committee to decide.",
+        "status": "learning"
+    },
+    {
+        "word": "Upon",
+        "meaning": "Üzerine, üzerinde (resmi)",
+        "sentence": "The decision was made upon careful consideration.",
+        "status": "learning"
+    },
+    {
+        "word": "With",
+        "meaning": "İle, birlikte",
+        "sentence": "The experiment was conducted with great precision.",
+        "status": "learning"
+    },
+    {
+        "word": "With regard to",
+        "meaning": "İle ilgili olarak",
+        "sentence": "With regard to your request, we will respond soon.",
+        "status": "learning"
+    },
+    {
+        "word": "With respect to",
+        "meaning": "İle ilgili olarak, bakımından",
+        "sentence": "With respect to the findings, further study is needed.",
+        "status": "learning"
+    },
+    {
+        "word": "Within",
+        "meaning": "İçinde, dahilinde",
+        "sentence": "The report must be submitted within 30 days.",
+        "status": "learning"
+    },
+    {
+        "word": "Without",
+        "meaning": "Olmaksızın, olmadan",
+        "sentence": "Progress cannot be achieved without cooperation.",
+        "status": "learning"
+    },
+    {
+        "word": "Across",
+        "meaning": "Karşısında, boyunca, aşarak",
+        "sentence": "The policy applies across all departments.",
+        "status": "learning"
+    },
+    {
+        "word": "After",
+        "meaning": "Sonra, ardından",
+        "sentence": "After careful consideration, a decision was reached.",
+        "status": "learning"
+    },
+    {
+        "word": "As for",
+        "meaning": "Ne ise, gelince",
+        "sentence": "As for the budget, it remains a major concern.",
+        "status": "learning"
+    },
+    {
+        "word": "Apart from",
+        "meaning": "Haricinde, dışında, yanı sıra",
+        "sentence": "Apart from the cost, the plan is quite feasible.",
+        "status": "learning"
+    },
+    {
+        "word": "Alongside",
+        "meaning": "Yanında, yanı sıra",
+        "sentence": "She worked alongside some of the best researchers.",
+        "status": "learning"
+    },
+    {
+        "word": "Amid",
+        "meaning": "Arasında, ortasında",
+        "sentence": "Amid growing concerns, the government took action.",
+        "status": "learning"
+    },
+    {
+        "word": "Amidst",
+        "meaning": "Ortasında, arasında",
+        "sentence": "Amidst the chaos, he remained calm.",
+        "status": "learning"
+    },
+    {
+        "word": "As of",
+        "meaning": "İtibarıyla, başlayarak",
+        "sentence": "As of January, the new regulations take effect.",
+        "status": "learning"
+    },
+    {
+        "word": "Barring",
+        "meaning": "Dışında, olmadıkça",
+        "sentence": "Barring any unforeseen circumstances, we will meet the deadline.",
+        "status": "learning"
+    },
+    {
+        "word": "In the absence of",
+        "meaning": "Yokluğunda",
+        "sentence": "In the absence of evidence, charges were dropped.",
+        "status": "learning"
+    },
+    {
+        "word": "In view of",
+        "meaning": "Göz önünde bulundurulduğunda",
+        "sentence": "In view of recent events, the policy must change.",
+        "status": "learning"
+    },
+    {
+        "word": "Next to",
+        "meaning": "Yanında, yanı başında",
+        "sentence": "The lab is located next to the library.",
+        "status": "learning"
+    },
+    {
+        "word": "Owing to",
+        "meaning": "Nedeniyle, yüzünden",
+        "sentence": "Owing to budget cuts, the project was shelved.",
+        "status": "learning"
+    },
+    {
+        "word": "Subject to",
+        "meaning": "Bağlı, tabi",
+        "sentence": "The agreement is subject to parliamentary approval.",
+        "status": "learning"
+    },
+    {
+        "word": "As a result of",
+        "meaning": "Sonucunda",
+        "sentence": "As a result of globalisation, cultures have intermingled.",
+        "status": "learning"
+    },
+    {
+        "word": "By means of",
+        "meaning": "Aracılığıyla, yoluyla",
+        "sentence": "The data was collected by means of questionnaires.",
+        "status": "learning"
+    },
+    {
+        "word": "By virtue of",
+        "meaning": "Sayesinde, nedeniyle",
+        "sentence": "By virtue of his experience, he got the job.",
+        "status": "learning"
+    },
+    {
+        "word": "In light of",
+        "meaning": "Işığında, göz önünde bulundurarak",
+        "sentence": "In light of the evidence, the verdict was revised.",
+        "status": "learning"
+    },
+    {
+        "word": "In place of",
+        "meaning": "Yerine",
+        "sentence": "Water was used in place of chemicals.",
+        "status": "learning"
+    },
+    {
+        "word": "On the basis of",
+        "meaning": "Temelinde, dayalı olarak",
+        "sentence": "Decisions should not be made on the basis of assumptions.",
+        "status": "learning"
+    }
 ]
