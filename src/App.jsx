@@ -7,43 +7,78 @@ import WordManager from './components/WordManager';
 import Dashboard from './components/Dashboard';
 
 const AMBIENCES = [
-  { id: 'focus', name: 'Focus', icon: Music, color: 'text-indigo-400', activeBg: 'bg-indigo-500/20', activeBorder: 'border-indigo-500/50', src: '/focus.mp3' },
-  { id: 'nature', name: 'Nature', icon: Wind, color: 'text-emerald-400', activeBg: 'bg-emerald-500/20', activeBorder: 'border-emerald-500/50', src: '/nature.mp3' },
-  { id: 'cafe', name: 'Atmosphere', icon: Coffee, color: 'text-amber-400', activeBg: 'bg-amber-500/20', activeBorder: 'border-amber-500/50', src: '/atmosphare.mp3' },
+  { id: 'focus', name: 'Odak', icon: Music, color: 'text-indigo-400', activeBg: 'bg-indigo-500/20', activeBorder: 'border-indigo-500/50', src: '/focus.mp3' },
+  { id: 'nature', name: 'Doğa', icon: Wind, color: 'text-emerald-400', activeBg: 'bg-emerald-500/20', activeBorder: 'border-emerald-500/50', src: '/nature.mp3' },
+  { id: 'cafe', name: 'Atmosfer', icon: Coffee, color: 'text-amber-400', activeBg: 'bg-amber-500/20', activeBorder: 'border-amber-500/50', src: '/atmosphare.mp3' },
+];
+
+const CATEGORIES = [
+  { id: 'verbs', name: 'Fiiller', file: '/yds_verbs.json' },
+  { id: 'nouns', name: 'İsimler', file: '/yds_nouns.json' },
+  { id: 'adjectives', name: 'Sıfatlar', file: '/yds_adjectives.json' },
+  { id: 'adverbs', name: 'Zarflar', file: '/yds_adverbs.json' },
+  { id: 'conjunctions', name: 'Bağlaçlar', file: '/yds_conjunctions.json' },
+  { id: 'phrasal_verbs', name: 'Deyimsel Fiiller', file: '/yds_phrasal_verbs.json' },
+  { id: 'prepositions', name: 'Edatlar', file: '/yds_prepositions.json' },
 ];
 
 const App = () => {
+  const [currentCategory, setCurrentCategory] = useState(() => {
+    return localStorage.getItem('yds_current_category') || 'verbs';
+  });
+
   const [words, setWords] = useState(() => {
-    const saved = localStorage.getItem('yds_words');
+    const saved = localStorage.getItem(`yds_words_${currentCategory}`);
     return saved ? JSON.parse(saved) : [];
   });
-  const [currentWord, setCurrentWord] = useState(() => {
-    const savedId = localStorage.getItem('yds_current_word_id');
-    const savedWords = localStorage.getItem('yds_words');
-    if (savedId && savedWords) {
-      const parsedWords = JSON.parse(savedWords);
-      return parsedWords.find(w => w.word === savedId && (w.streak || 0) < 3) || null;
-    }
-    return null;
-  });
+
+  const [currentWord, setCurrentWord] = useState(null);
   const [showManager, setShowManager] = useState(false);
+  const [showAmbience, setShowAmbience] = useState(false);
   const [activeAmbience, setActiveAmbience] = useState(() => {
     return localStorage.getItem('yds_active_ambience') || null;
   });
   const [activeSessionIds, setActiveSessionIds] = useState(() => {
-    const saved = localStorage.getItem('yds_active_session');
+    const saved = localStorage.getItem(`yds_active_session_${currentCategory}`);
     return saved ? JSON.parse(saved) : [];
   });
 
   const audioRefs = useRef({});
 
+  // Sync category
   useEffect(() => {
-    localStorage.setItem('yds_words', JSON.stringify(words));
-  }, [words]);
+    localStorage.setItem('yds_current_category', currentCategory);
+  }, [currentCategory]);
+
+  // Load category data if local storage is empty
+  useEffect(() => {
+    const savedWords = localStorage.getItem(`yds_words_${currentCategory}`);
+    if (savedWords) {
+      const parsed = JSON.parse(savedWords);
+      setWords(parsed);
+      const savedSession = localStorage.getItem(`yds_active_session_${currentCategory}`);
+      setActiveSessionIds(savedSession ? JSON.parse(savedSession) : []);
+    } else {
+      const categoryFile = CATEGORIES.find(c => c.id === currentCategory)?.file;
+      if (categoryFile) {
+        fetch(categoryFile)
+          .then(res => res.json())
+          .then(data => {
+            setWords(data);
+            localStorage.setItem(`yds_words_${currentCategory}`, JSON.stringify(data));
+          })
+          .catch(err => console.error("Error loading category:", err));
+      }
+    }
+  }, [currentCategory]);
 
   useEffect(() => {
-    localStorage.setItem('yds_active_session', JSON.stringify(activeSessionIds));
-  }, [activeSessionIds]);
+    localStorage.setItem(`yds_words_${currentCategory}`, JSON.stringify(words));
+  }, [words, currentCategory]);
+
+  useEffect(() => {
+    localStorage.setItem(`yds_active_session_${currentCategory}`, JSON.stringify(activeSessionIds));
+  }, [activeSessionIds, currentCategory]);
 
   useEffect(() => {
     if (currentWord) {
@@ -85,7 +120,7 @@ const App = () => {
   }, []);
 
   const selectNewWord = useCallback(() => {
-    const unlearned = words.filter(w => (w.streak || 0) < 3);
+    const unlearned = words.filter(w => (w.streak || 0) < 1);
     if (unlearned.length === 0) {
       setCurrentWord(null);
       setActiveSessionIds([]);
@@ -120,13 +155,36 @@ const App = () => {
     setCurrentWord(nextWord);
   }, [words, currentWord, activeSessionIds, replenishSession]);
 
+  const handleResetWord = (wordValue) => {
+    const updatedWords = words.map(w =>
+      w.word === wordValue ? { ...w, streak: 0 } : w
+    );
+    setWords(updatedWords);
+  };
+
+  const handleResetCategory = () => {
+    if (window.confirm(`Kategoriyi sıfırlamak ve orijinal dosyadan tekrar yüklemek istediğinize emin misiniz? Tüm ilerlemeniz silinecektir.`)) {
+      const categoryFile = CATEGORIES.find(c => c.id === currentCategory)?.file;
+      if (categoryFile) {
+        fetch(categoryFile)
+          .then(res => res.json())
+          .then(data => {
+            setWords(data);
+            localStorage.setItem(`yds_words_${currentCategory}`, JSON.stringify(data));
+            setActiveSessionIds([]); // Clear current session
+          })
+          .catch(err => console.error("Error resetting category:", err));
+      }
+    }
+  };
+
   const handleEvaluation = (isCorrect) => {
     if (!currentWord) return;
 
     const updatedWords = words.map(w => {
       if (w.word === currentWord.word) {
         const newStreak = isCorrect ? (w.streak || 0) + 1 : 0;
-        if (newStreak === 3) {
+        if (newStreak === 1) {
           confetti({
             particleCount: 150,
             spread: 70,
@@ -148,7 +206,7 @@ const App = () => {
     }
   }, [words, currentWord, selectNewWord]);
 
-  const masteredCount = words.filter(w => (w.streak || 0) >= 3).length;
+  const masteredCount = words.filter(w => (w.streak || 0) >= 1).length;
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8 min-h-screen flex flex-col relative">
@@ -164,33 +222,63 @@ const App = () => {
         />
       ))}
 
-      {/* Ambience Controls - Bottom Left */}
-      <div className="fixed bottom-32 left-8 z-40 hidden lg:flex flex-col gap-4">
-        <div className="bg-slate-900/80 backdrop-blur-xl border border-slate-800 rounded-3xl p-4 shadow-2xl">
-          <h3 className="text-[10px] uppercase tracking-widest text-slate-500 font-bold mb-4 flex items-center gap-2">
-            <Speaker size={12} /> Study Ambiences
-          </h3>
-          <div className="flex flex-col gap-3">
-            {AMBIENCES.map(amb => {
-              const Icon = amb.icon;
-              const isActive = activeAmbience === amb.id;
-              return (
-                <button
-                  key={amb.id}
-                  onClick={() => toggleAmbience(amb.id)}
-                  className={`flex items-center gap-3 px-4 py-3 rounded-2xl transition-all duration-300 border ${isActive
-                    ? `${amb.activeBg} ${amb.activeBorder} ${amb.color} scale-105 shadow-lg`
-                    : 'bg-slate-950/50 border-transparent text-slate-500 hover:border-slate-800 hover:text-slate-300'
-                    }`}
-                  title={amb.name}
-                >
-                  <Icon size={20} className={isActive ? 'animate-pulse' : ''} />
-                  <span className="text-xs font-medium">{amb.name}</span>
-                </button>
-              );
-            })}
-          </div>
-        </div>
+      {/* Category Selector - Top Horizontal Scroll */}
+      <div className="flex overflow-x-auto gap-2 py-4 mb-2 no-scrollbar scroll-smooth">
+        {CATEGORIES.map(cat => (
+          <button
+            key={cat.id}
+            onClick={() => setCurrentCategory(cat.id)}
+            className={`whitespace-nowrap px-4 py-2 rounded-full text-xs font-bold transition-all border ${currentCategory === cat.id
+              ? 'bg-indigo-500 border-indigo-400 text-white shadow-lg shadow-indigo-500/20'
+              : 'bg-slate-900 border-slate-800 text-slate-500 hover:text-slate-300'
+              }`}
+          >
+            {cat.name}
+          </button>
+        ))}
+      </div>
+
+      {/* Ambience Controls - Top Right Toggle & horizontal menu */}
+      <div className="fixed top-6 right-6 z-50 flex flex-col items-end gap-2">
+        <button
+          onClick={() => setShowAmbience(!showAmbience)}
+          className={`p-3 rounded-2xl transition-all shadow-2xl border ${activeAmbience || showAmbience
+            ? 'bg-indigo-500 border-indigo-400 text-white'
+            : 'bg-slate-900 border-slate-800 text-slate-500 hover:text-slate-200'
+            }`}
+          title="Çalışma Atmosferi"
+        >
+          <Speaker size={20} className={activeAmbience ? 'animate-pulse' : ''} />
+        </button>
+
+        <AnimatePresence>
+          {showAmbience && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: -10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: -10 }}
+              className="bg-slate-900/95 backdrop-blur-xl border border-slate-800 rounded-3xl p-2 shadow-2xl flex gap-1"
+            >
+              {AMBIENCES.map(amb => {
+                const Icon = amb.icon;
+                const isActive = activeAmbience === amb.id;
+                return (
+                  <button
+                    key={amb.id}
+                    onClick={() => toggleAmbience(amb.id)}
+                    className={`flex flex-col items-center gap-1.5 p-3 min-w-[64px] rounded-2xl transition-all duration-300 border ${isActive
+                      ? `${amb.activeBg} ${amb.activeBorder} ${amb.color} scale-105 shadow-lg`
+                      : 'bg-slate-950/50 border-transparent text-slate-500 hover:text-slate-300'
+                      }`}
+                  >
+                    <Icon size={18} className={isActive ? 'animate-pulse' : ''} />
+                    <span className="text-[9px] font-bold uppercase tracking-tight">{amb.name}</span>
+                  </button>
+                );
+              })}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
       <Dashboard
@@ -208,15 +296,15 @@ const App = () => {
               className="dark-glass p-12 rounded-2xl text-center max-w-md"
             >
               <Info className="w-16 h-16 mx-auto mb-6 text-indigo-400" />
-              <h2 className="text-2xl font-bold mb-4">No words yet!</h2>
+              <h2 className="text-2xl font-bold mb-4">Henüz kelime yok!</h2>
               <p className="text-slate-400 mb-8">
-                Add new words or upload a JSON file to begin.
+                Bu kategori için kelime listeniz boş görünüyor.
               </p>
               <button
                 onClick={() => setShowManager(true)}
                 className="btn-primary flex items-center gap-2 mx-auto"
               >
-                <Plus size={20} /> Add Word
+                <Plus size={20} /> Kelime Ekle
               </button>
             </motion.div>
           ) : (
@@ -233,13 +321,13 @@ const App = () => {
                 className="text-center"
               >
                 <Trophy className="w-20 h-20 mx-auto mb-4 text-yellow-500" />
-                <h2 className="text-3xl font-bold mb-2">Excellent!</h2>
-                <p className="text-slate-400">You've conquered all the words.</p>
+                <h2 className="text-3xl font-bold mb-2">Harika!</h2>
+                <p className="text-slate-400">Bu kategorideki tüm kelimeleri fethettin.</p>
                 <button
                   onClick={() => setShowManager(true)}
                   className="mt-6 text-indigo-400 hover:text-indigo-300 transition-colors"
                 >
-                  Add more words
+                  Daha fazla kelime ekle
                 </button>
               </motion.div>
             )
@@ -248,18 +336,11 @@ const App = () => {
       </main>
 
       <div className="mt-auto pt-8 flex flex-col items-center gap-4">
-        <a
-          href="/yds_master_list.json"
-          download="yds_master_list.json"
-          className="text-[10px] uppercase tracking-widest text-slate-500 hover:text-indigo-400 transition-colors font-bold flex items-center gap-2"
-        >
-          <Info size={12} /> Download YDS Master List (.json)
-        </a>
         <button
           onClick={() => setShowManager(!showManager)}
-          className="flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900 border border-slate-800 hover:border-slate-700 transition-all text-slate-400 hover:text-slate-100"
+          className="flex items-center gap-2 px-6 py-3 rounded-full bg-slate-900 border border-slate-800 hover:border-slate-700 transition-all text-slate-400 hover:text-slate-100 font-bold"
         >
-          {showManager ? 'Close' : 'Manage Words'}
+          {showManager ? 'Kapat' : 'Kelimeleri Yönet'}
         </button>
       </div>
 
@@ -268,6 +349,8 @@ const App = () => {
           <WordManager
             words={words}
             setWords={setWords}
+            onResetWord={handleResetWord}
+            onResetCategory={handleResetCategory}
             onClose={() => setShowManager(false)}
           />
         )}

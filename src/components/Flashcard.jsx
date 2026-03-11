@@ -77,7 +77,7 @@ const Flashcard = ({ word, onEvaluate }) => {
             >
                 {/* Front */}
                 <div className="absolute inset-0 w-full h-full dark-glass rounded-3xl p-8 flex flex-col items-center justify-center backface-hidden shadow-2xl">
-                    <span className="text-slate-500 text-sm font-medium mb-4 tracking-widest uppercase">Target Word</span>
+                    <span className="text-slate-500 text-sm font-medium mb-4 tracking-widest uppercase">Hedef Kelime</span>
                     <h1 className="text-4xl font-bold mb-8 text-center bg-gradient-to-br from-white to-slate-400 bg-clip-text text-transparent italic">
                         {word.word}
                     </h1>
@@ -86,29 +86,29 @@ const Flashcard = ({ word, onEvaluate }) => {
                             "{word.sentence}"
                         </p>
                     </div>
-                    <p className="mt-8 text-xs text-slate-600 animate-pulse">Click or Space to Flip</p>
+                    <p className="mt-8 text-xs text-slate-600 animate-pulse">Çevirmek için Tıklayın veya Boşluk tuşuna basın</p>
                 </div>
 
                 {/* Back */}
                 <div className="absolute inset-0 w-full h-full dark-glass rounded-3xl p-8 flex flex-col items-center justify-center backface-hidden shadow-2xl [transform:rotateY(180deg)] bg-indigo-950/20">
-                    <span className="text-indigo-400 text-sm font-medium mb-4 tracking-widest uppercase">Meaning</span>
+                    <span className="text-indigo-400 text-sm font-medium mb-4 tracking-widest uppercase">Anlamı</span>
                     <h2 className="text-3xl font-bold mb-6 text-center text-white">
                         {word.meaning}
                     </h2>
                     <div className="flex gap-4 w-full mt-auto" onClick={(e) => e.stopPropagation()}>
                         <button
                             onClick={() => handleChoice(false)}
-                            className="flex-1 flex items-center justify-center gap-2 py-4 bg-red-900/20 hover:bg-red-900/40 border border-red-900/30 text-red-400 rounded-xl transition-all"
-                            title="I Don't Know (Left Arrow)"
+                            className="flex-1 flex items-center justify-center gap-2 py-4 bg-red-900/20 hover:bg-red-900/40 border border-red-900/30 text-red-500 rounded-xl transition-all font-bold"
+                            title="Bilmiyorum (Sol Ok)"
                         >
-                            <X size={20} /> I Don't Know
+                            <X size={20} /> Bilmiyorum
                         </button>
                         <button
                             onClick={() => handleChoice(true)}
-                            className="flex-1 flex items-center justify-center gap-2 py-4 bg-green-900/20 hover:bg-green-900/40 border border-green-900/30 text-green-400 rounded-xl transition-all font-bold"
-                            title="I Know (Right Arrow)"
+                            className="flex-1 flex items-center justify-center gap-2 py-4 bg-green-900/20 hover:bg-green-900/40 border border-green-900/30 text-green-500 rounded-xl transition-all font-bold"
+                            title="Biliyorum (Sağ Ok)"
                         >
-                            <Check size={20} /> I Know
+                            <Check size={20} /> Biliyorum
                         </button>
                     </div>
                 </div>
@@ -116,13 +116,9 @@ const Flashcard = ({ word, onEvaluate }) => {
 
             {/* Persistence Info */}
             <div className="absolute -bottom-16 left-0 right-0 flex justify-center gap-2">
-                {[...Array(3)].map((_, i) => (
-                    <div
-                        key={i}
-                        className={`w-3 h-3 rounded-full transition-all duration-300 ${i < (word.streak || 0) ? 'bg-indigo-500 scale-110' : 'bg-slate-800'
-                            }`}
-                    />
-                ))}
+                <div
+                    className={`h-1.5 rounded-full transition-all duration-300 ${(word.streak || 0) >= 1 ? 'bg-indigo-500 w-12' : 'bg-slate-800 w-8'}`}
+                />
             </div>
         </div>
     );
