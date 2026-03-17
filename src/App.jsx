@@ -5,6 +5,7 @@ import { Plus, Trophy, Info, Music, Coffee, Wind, Speaker } from 'lucide-react';
 import Flashcard from './components/Flashcard';
 import WordManager from './components/WordManager';
 import Dashboard from './components/Dashboard';
+import GlobalStats from './components/GlobalStats';
 
 const AMBIENCES = [
   { id: 'focus', name: 'Odak', icon: Music, color: 'text-indigo-400', activeBg: 'bg-indigo-500/20', activeBorder: 'border-indigo-500/50', src: '/focus.mp3' },
@@ -215,6 +216,37 @@ const App = () => {
 
   const masteredCount = words.filter(w => (w.streak || 0) >= 1).length;
 
+  // Global stats: load all categories from JSON + localStorage
+  const [globalStats, setGlobalStats] = useState([]);
+
+  useEffect(() => {
+    let cancelled = false;
+    const loadAll = async () => {
+      const results = await Promise.all(
+        CATEGORIES.map(async (cat) => {
+          try {
+            const res = await fetch(cat.file);
+            const data = await res.json();
+            const savedStreaks = localStorage.getItem(`yds_streaks_${cat.id}`);
+            const streakMap = savedStreaks ? JSON.parse(savedStreaks) : {};
+            const learned = data.filter(w => (streakMap[w.word] || 0) >= 1).length;
+            return { id: cat.id, name: cat.name, total: data.length, learned };
+          } catch {
+            return { id: cat.id, name: cat.name, total: 0, learned: 0 };
+          }
+        })
+      );
+      if (!cancelled) setGlobalStats(results);
+    };
+    loadAll();
+    return () => { cancelled = true; };
+    // Re-run every time user evaluates a word (words state changes)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [words]);
+
+  const totalWords = globalStats.reduce((s, c) => s + c.total, 0);
+  const totalLearned = globalStats.reduce((s, c) => s + c.learned, 0);
+
   return (
     <div className="max-w-4xl mx-auto px-4 py-8 min-h-screen flex flex-col relative">
       {AMBIENCES.map(amb => (
@@ -343,7 +375,13 @@ const App = () => {
         </AnimatePresence>
       </main>
 
-      <div className="mt-auto pt-8 flex flex-col items-center gap-4">
+      <GlobalStats
+        categoryStats={globalStats}
+        totalWords={totalWords}
+        totalLearned={totalLearned}
+      />
+
+      <div className="mt-auto pt-4 pb-2 flex flex-col items-center gap-4">
         <button
           onClick={() => setShowManager(!showManager)}
           className="flex items-center gap-2 px-6 py-3 rounded-full bg-slate-900 border border-slate-800 hover:border-slate-700 transition-all text-slate-400 hover:text-slate-100 font-bold"
