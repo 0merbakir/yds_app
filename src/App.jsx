@@ -6,6 +6,13 @@ import Flashcard from './components/Flashcard';
 import WordManager from './components/WordManager';
 import Dashboard from './components/Dashboard';
 import GlobalStats from './components/GlobalStats';
+import {
+  loadStreaks,
+  saveStreaks as dbSaveStreaks,
+  clearStreaks,
+  loadAllStreaks,
+  migrateFromLocalStorage,
+} from './db';
 
 const AMBIENCES = [
   { id: 'focus', name: 'Odak', icon: Music, color: 'text-indigo-400', activeBg: 'bg-indigo-500/20', activeBorder: 'border-indigo-500/50', src: '/focus.mp3' },
@@ -48,7 +55,12 @@ const App = () => {
     localStorage.setItem('yds_current_category', currentCategory);
   }, [currentCategory]);
 
-  // Load category: always fetch from JSON, restore saved streaks
+  // One-time migration from localStorage → IndexedDB on first mount
+  useEffect(() => {
+    migrateFromLocalStorage(CATEGORIES.map(c => c.id));
+  }, []);
+
+  // Load category: always fetch from JSON, restore saved streaks from IndexedDB
   useEffect(() => {
     const categoryFile = CATEGORIES.find(c => c.id === currentCategory)?.file;
     if (!categoryFile) return;
@@ -57,11 +69,11 @@ const App = () => {
     setWords([]);
     setCurrentWord(null);
 
-    fetch(categoryFile)
-      .then(res => res.json())
-      .then(freshData => {
-        const savedStreaks = localStorage.getItem(`yds_streaks_${currentCategory}`);
-        const streakMap = savedStreaks ? JSON.parse(savedStreaks) : {};
+    const loadCategory = async () => {
+      try {
+        const res = await fetch(categoryFile);
+        const freshData = await res.json();
+        const streakMap = await loadStreaks(currentCategory);
         const merged = freshData.map(w => ({
           ...w,
           streak: streakMap[w.word] || 0,
@@ -69,16 +81,19 @@ const App = () => {
         setWords(merged);
         const savedSession = localStorage.getItem(`yds_active_session_${currentCategory}`);
         setActiveSessionIds(savedSession ? JSON.parse(savedSession) : []);
-      })
-      .catch(err => console.error('Error loading category:', err));
+      } catch (err) {
+        console.error('Error loading category:', err);
+      }
+    };
+    loadCategory();
   }, [currentCategory]);
 
 
-  // Save streaks separately (words always come from JSON)
+  // Save streaks to IndexedDB (words always come from JSON)
   const saveStreaks = (updatedWords) => {
     const streakMap = {};
     updatedWords.forEach(w => { if (w.streak) streakMap[w.word] = w.streak; });
-    localStorage.setItem(`yds_streaks_${currentCategory}`, JSON.stringify(streakMap));
+    dbSaveStreaks(currentCategory, streakMap);
   };
 
 
@@ -175,9 +190,9 @@ const App = () => {
       if (categoryFile) {
         fetch(categoryFile)
           .then(res => res.json())
-          .then(data => {
+          .then(async (data) => {
             setWords(data);
-            localStorage.removeItem(`yds_streaks_${currentCategory}`);
+            await clearStreaks(currentCategory);
             setActiveSessionIds([]);
           })
           .catch(err => console.error('Error resetting category:', err));
@@ -222,13 +237,13 @@ const App = () => {
   useEffect(() => {
     let cancelled = false;
     const loadAll = async () => {
+      const allStreakMaps = await loadAllStreaks(CATEGORIES.map(c => c.id));
       const results = await Promise.all(
         CATEGORIES.map(async (cat) => {
           try {
             const res = await fetch(cat.file);
             const data = await res.json();
-            const savedStreaks = localStorage.getItem(`yds_streaks_${cat.id}`);
-            const streakMap = savedStreaks ? JSON.parse(savedStreaks) : {};
+            const streakMap = allStreakMaps[cat.id] || {};
             const learned = data.filter(w => (streakMap[w.word] || 0) >= 1).length;
             return { id: cat.id, name: cat.name, total: data.length, learned };
           } catch {
