@@ -184,6 +184,14 @@ const App = () => {
     saveStreaks(updatedWords);
   };
 
+  const handleMarkLearned = (wordValue) => {
+    const updatedWords = words.map(w =>
+      w.word === wordValue ? { ...w, streak: 1 } : w
+    );
+    setWords(updatedWords);
+    saveStreaks(updatedWords);
+  };
+
   const handleResetCategory = () => {
     if (window.confirm(`Kategoriyi sıfırlamak istediğinize emin misiniz? Tüm ilerlemeniz silinecektir.`)) {
       const categoryFile = CATEGORIES.find(c => c.id === currentCategory)?.file;
@@ -411,6 +419,7 @@ const App = () => {
             words={words}
             setWords={setWords}
             onResetWord={handleResetWord}
+            onMarkLearned={handleMarkLearned}
             onResetCategory={handleResetCategory}
             onClose={() => setShowManager(false)}
           />

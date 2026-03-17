@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { X, Upload, Plus, Trash2, BookOpen, RotateCcw } from 'lucide-react';
+import { X, Upload, Plus, Trash2, BookOpen, RotateCcw, CheckCircle } from 'lucide-react';
 
-const WordManager = ({ words, setWords, onResetWord, onResetCategory, onClose }) => {
+const WordManager = ({ words, setWords, onResetWord, onMarkLearned, onResetCategory, onClose }) => {
     const [newWord, setNewWord] = useState({ word: '', meaning: '', sentence: '' });
     const [isDragging, setIsDragging] = useState(false);
 
@@ -161,8 +161,13 @@ const WordManager = ({ words, setWords, onResetWord, onResetCategory, onClose })
                                     Öğreniliyor ({learningWords.length})
                                 </label>
                                 <div className="grid grid-cols-1 gap-2">
-                                    {learningWords.map((w, i) => (
-                                        <WordRow key={w.word} w={w} onDelete={() => handleDelete(w.word)} />
+                                    {learningWords.map((w) => (
+                                        <WordRow
+                                            key={w.word}
+                                            w={w}
+                                            onDelete={() => handleDelete(w.word)}
+                                            onMarkLearned={() => onMarkLearned(w.word)}
+                                        />
                                     ))}
                                 </div>
                             </div>
@@ -194,9 +199,9 @@ const WordManager = ({ words, setWords, onResetWord, onResetCategory, onClose })
     );
 };
 
-const WordRow = ({ w, onDelete, onReset, isMastered }) => (
+const WordRow = ({ w, onDelete, onReset, onMarkLearned, isMastered }) => (
     <div className={`flex items-center justify-between p-4 bg-slate-950/50 border border-slate-800 rounded-xl group hover:border-slate-700 transition-all ${isMastered ? 'opacity-60 hover:opacity-100' : ''}`}>
-        <div className="flex-1">
+        <div className="flex-1 min-w-0">
             <span className={`font-bold ${isMastered ? 'text-green-400' : 'text-slate-100'}`}>{w.word}</span>
             <span className="mx-2 text-slate-600">→</span>
             <span className="text-slate-400">{w.meaning}</span>
@@ -205,6 +210,16 @@ const WordRow = ({ w, onDelete, onReset, isMastered }) => (
             </div>
         </div>
         <div className="flex items-center gap-1">
+            {!isMastered && onMarkLearned && (
+                <button
+                    onClick={onMarkLearned}
+                    className="p-2 text-slate-600 hover:text-green-400 opacity-0 group-hover:opacity-100 transition-all flex items-center gap-1 text-xs font-bold"
+                    title="Öğrenildi olarak işaretle"
+                >
+                    <CheckCircle size={16} />
+                    <span className="hidden sm:inline">Öğrendim</span>
+                </button>
+            )}
             {isMastered && (
                 <button
                     onClick={onReset}
